@@ -1,1 +1,2 @@
-# ethereum_analysis
+# Ethereum analysis
+made by: @tardaniel
