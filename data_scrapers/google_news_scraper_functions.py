@@ -1,13 +1,14 @@
-from newspaper import Article
 import spacy
+import math
+import time
+
 from string import punctuation
 from heapq import nlargest
 from googletrans import Translator
-import time
 from nltk.corpus import stopwords
 from spacy.lang.en.stop_words import STOP_WORDS
-import math
 from spacytextblob.spacytextblob import SpacyTextBlob
+from newspaper import Article
 
 
 STOP_WORDS_HU = stopwords.words('hungarian')
@@ -15,6 +16,21 @@ STOP_WORDS_HU = stopwords.words('hungarian')
 translator = Translator()
 
 def download_and_translate_process(url):
+    """
+    Downloads and parses an article from a given URL using the `newspaper` library.
+
+    Parameters:
+    - url (str): The URL of the article to download and parse.
+
+    Returns:
+    - str: The text content of the article if successful, an empty string otherwise.
+
+    Example Usage:
+    ```python
+    url = "https://example.com/article"
+    article_text = download_and_translate_process(url)
+    ```
+    """
     try:
         url = url
         article = Article(url)
@@ -26,6 +42,24 @@ def download_and_translate_process(url):
         return ""
 
 def summarize(text, per, nlp, language="en"):
+    """
+    Summarizes the input text using extractive summarization.
+
+    Parameters:
+    - text (str): The input text to be summarized.
+    - per (float): The percentage of sentences to include in the summary.
+    - nlp: A spaCy language processing pipeline.
+    - language (str, optional): The language of the text ('en' for English, 'hu' for Hungarian). Default is 'en'.
+
+    Returns:
+    - str: The summarized text.
+
+    Description:
+    Performs extractive summarization on the input text using spaCy. The function considers the specified language
+    and removes common stopwords and punctuation during the summarization process. The summary includes a percentage
+    of the most important sentences based on word frequencies.
+
+    """
     if len(text) > 0:
         if language == "hu":
             doc= nlp(text)
@@ -93,6 +127,17 @@ def summarize(text, per, nlp, language="en"):
         return ""
 
 def sentiment_analysis(text, nlp):
+    """
+    Analyzes the sentiment of the input text using spaCyTextBlob.
+
+    Parameters:
+    - text (str): The input text for sentiment analysis.
+    - nlp: A spaCy language processing pipeline with 'spacytextblob' added.
+
+    Returns:
+    - tuple: A tuple containing the processed text and sentiment polarity.
+
+    """
     if len(text) > 0:
         text = text
         nlp.add_pipe('spacytextblob')
@@ -111,6 +156,16 @@ def sentiment_analysis(text, nlp):
         return  text, 0
 
 def max_columns_width(worksheet):
+    """
+    Adjusts the width of each column in a worksheet based on the maximum content length.
+
+    Parameters:
+    - worksheet: An openpyxl worksheet object.
+
+    Description:
+    Iterates through each column in the worksheet, calculates the maximum content length
+    for each column, and adjusts the column width to accommodate the longest content plus a margin.
+    """
     worksheet = worksheet
 
     for col in worksheet.columns:

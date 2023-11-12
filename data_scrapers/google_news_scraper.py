@@ -1,12 +1,12 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
 import time
-from openpyxl import Workbook
-from datetime import date
 import google_news_scraper_functions
 import spacy
 import dateparser
 
+from openpyxl import Workbook
+from datetime import date
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 today = date.today()
 workbook = Workbook()
@@ -54,7 +54,7 @@ while kovetkezo_gomb is not None or len(postok) > 0:
         kovetkezo_gomb = driver.find_element(By.XPATH, '//*[@id="pnnext"]/span[2]')
         time.sleep(1)
         kovetkezo_gomb.click()
-        print("Jön a kövi oldal")
+        print("Next Page")
     except:
         break
     #break

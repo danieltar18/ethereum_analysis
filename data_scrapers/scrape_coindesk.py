@@ -1,11 +1,11 @@
 import requests
-from bs4 import BeautifulSoup
 import google_news_scraper_functions as custom_functions
-from openpyxl import Workbook
 import spacy
-from datetime import date
 import dateparser
 
+from datetime import date
+from openpyxl import Workbook
+from bs4 import BeautifulSoup
 
 workbook = Workbook()
 worksheet = workbook.active
@@ -39,7 +39,7 @@ for i in range(1, 162):
 
             worksheet.append([date, title, short_text, link, long_text.text, sentiment])
 
-        print("Jön a kövi oldal")
+        print("Next Page Coming")
     except:
         continue
 
