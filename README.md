@@ -18,4 +18,5 @@ Models, that I've tested
 
 Sentiment Analysis 😊😐😞
 ![alt text](https://github.com/flamenco18/ethereum_analysis/blob/main/readme_photo.png)
+
 made by: @tardaniel
