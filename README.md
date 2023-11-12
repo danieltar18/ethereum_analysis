@@ -1,4 +1,6 @@
-# Ethereum analysis
+# Ethereum analysis ![alt text](https://cryptologos.cc/logos/ethereum-eth-logo.png?v=026)
+
+
 
 Welcome,
 
