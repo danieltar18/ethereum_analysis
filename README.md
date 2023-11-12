@@ -1,4 +1,4 @@
-# Ethereum analysis
+# Predicting & Analysing Ethereum Daily Close Price
 
 
 
